@@ -1,0 +1,127 @@
+        -:    0:Source:menu.c
+        -:    0:Graph:menu.gcno
+        -:    0:Data:menu.gcda
+        -:    0:Runs:1
+        -:    1:
+        -:    2:/************************************************************************************
+        -:    3: *   FILENAME    :   Project_Menu.c
+        -:    4: *
+        -:    5: *   DESCRIPTION :   This file is uses as Main menu of the banking system which gives
+        -:    6: *                   customer corner and bankers corner options.
+        -:    7: *
+        -:    8: *   REVISION HISTORY
+        -:    9: *
+        -:   10: *   DATE            NAME             REASON
+        -:   11: *
+        -:   12: *  -------------------------------------------
+        -:   13: *   
+        -:   14: *   25/05/2022    Username            Menu
+        -:   15: *
+        -:   16: * ***********************************************************************************/
+        -:   17:
+        -:   18:#include <stdio.h>   //Including required Header files
+        -:   19:#include<termios.h>
+        -:   20:#include<stdlib.h>
+        -:   21:#include<unistd.h>
+        -:   22:#include "Header2.h"
+        -:   23:#include "Header1.h"
+        -:   24:#include "func.c"
+        -:   25:#include "submenu.c"
+        -:   26:#include "Password.c"
+        -:   27:
+        -:   28:
+        -:   29:
+        -:   30:
+function gotoxy called 0 returned 0% blocks executed 0%
+    #####:   31:void gotoxy(int x, int y) // Sets co-ordinates in (x,y)
+        -:   32:{
+    #####:   33:	printf("%c[%d;%df",0x1B,y,x);
+call    0 never executed
+    #####:   34:}
+        -:   35:
+function main called 1 returned 100% blocks executed 83%
+        1:   36:int main()               // This is the Main function.
+        -:   37:{
+        1:   38:	customer_file_to_list(); //Calling file to list function of customer corner
+call    0 returned 1
+       1*:   39:	for(ptr=start;(ptr);ptr=ptr->next) 
+branch  0 taken 0
+branch  1 taken 1 (fallthrough)
+    #####:   40:		printf("\n %s %s %lf\n",ptr->customer_id,ptr->name,ptr->balance);
+call    0 never executed
+        1:   41:		system("read a");
+call    0 returned 1
+        1:   42:	banker_file_to_list(); //Calling file to list function for banker corner
+call    0 returned 1
+        1:   43:	start=ptr=prev=new=NULL; //Declares all pointer of customer structure as NULL
+        1:   44:	start1=last1=ptr1=NULL; //Declares all pointer of transaction structure as NULL
+        1:   45:	int choice=0;
+        1:   46:	int Banker_pass=0;
+        4:   47:	while(choice!=3)
+branch  0 taken 3
+branch  1 taken 1 (fallthrough)
+        -:   48:	{
+        3:   49:	        system("clear");
+call    0 returned 3
+        3:   50:		printf("\n__________________________\n\n");
+call    0 returned 3
+        3:   51:		printf("\n\n---------WELCOME----------\n");
+call    0 returned 3
+        3:   52:		printf("\n-----------To-------------\n");
+call    0 returned 3
+        3:   53:		printf("\n ---The Banking System--- \n\n");
+call    0 returned 3
+        3:   54:		printf("\n__________________________\n\n");
+call    0 returned 3
+        3:   55:		printf("\n1. Customer Corner \n2. Banker Corner \n3. Exit \n");
+call    0 returned 3
+        3:   56:		printf("\nEnter Your Choice\n");
+call    0 returned 3
+        3:   57:		scanf("%d",&choice);
+call    0 returned 3
+        3:   58:		switch(choice)
+branch  0 taken 1
+branch  1 taken 1
+branch  2 taken 1
+branch  3 taken 0
+        -:   59:		{
+        1:   60:			case 1: Customer_Corner();  // Calling Customer_Corner function
+call    0 returned 1
+        1:   61:				break;
+        1:   62:			case 2: Banker_pass=checkpassword(); // Check banker's password
+call    0 returned 1
+        1:   63:				if(Banker_pass==1)
+branch  0 taken 0 (fallthrough)
+branch  1 taken 1
+        -:   64:				{
+    #####:   65:					printf("\nINVALID PASSWORD!!\n");
+call    0 never executed
+    #####:   66:					continue;
+        -:   67:				}
+        -:   68:				else
+        -:   69:				{
+        1:   70:					Banker_Corner();  // Calling Banker_Corner function
+call    0 returned 1
+        -:   71:				}
+        1:   72:				break;
+        1:   73:			case 3: break;
+    #####:   74:			default: printf("\nInvalid Choice\n");
+call    0 never executed
+        -:   75:		}
+        -:   76:	}
+        1:   77:	if(start)
+branch  0 taken 1 (fallthrough)
+branch  1 taken 0
+        1:   78:		customer_list_to_file(); // Calling  the list to file function of customer corner
+call    0 returned 1
+        -:   79:
+        1:   80:	if(start1)
+branch  0 taken 0 (fallthrough)
+branch  1 taken 1
+    #####:   81:		banker_list_to_file();  //Calling list to file  function for bankers corner
+call    0 never executed
+        -:   82:
+        1:   83:  system("read a");
+call    0 returned 1
+        -:   84:}
+        -:   85:

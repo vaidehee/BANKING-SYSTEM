@@ -1,0 +1,602 @@
+        -:    0:Source:func.c
+        -:    0:Graph:menu.gcno
+        -:    0:Data:menu.gcda
+        -:    0:Runs:1
+        -:    1:#include <stdio.h>
+        -:    2:#include<stdlib.h>
+        -:    3:#include<string.h>
+        -:    4:#include<ctype.h>
+        -:    5:#include<pthread.h>
+        -:    6:#include<time.h>
+        -:    7:
+        -:    8:#include "Header2.h"
+        -:    9:
+function Create_Account called 3 returned 100% blocks executed 74%
+        3:   10:int Create_Account()
+        -:   11:
+        -:   12:{
+        -:   13:	char name[30];
+        -:   14:	char aadhar_no[10];
+        -:   15:	char customer_id[20];
+        3:   16:	int len=0;
+        -:   17:	char password[10];;
+        -:   18:	char account_type[10];
+        -:   19:	double amount;
+        3:   20:	new = (cust *) calloc(1,sizeof(cust));
+        3:   21:	printf("\n\n Create Your Account\n");
+call    0 returned 3
+        -:   22:	while(1)
+    #####:   23:	{
+        3:   24:		printf("\nEnter Name:\n");
+call    0 returned 3
+        3:   25:		fflush(stdin);
+call    0 returned 3
+        3:   26:		scanf("%s",name);
+call    0 returned 3
+        -:   27:		int len;
+        3:   28:		int flag=0;
+       22:   29:		for(int i=0;name[i];i++)
+branch  0 taken 19
+branch  1 taken 3 (fallthrough)
+        -:   30:		{
+       19:   31:			if(!isalpha(name[i]))
+branch  0 taken 0 (fallthrough)
+branch  1 taken 19
+        -:   32:			{
+    #####:   33:				flag=1;
+    #####:   34:				break;
+        -:   35:			}
+        -:   36:		}
+        3:   37:		if(flag==1)
+branch  0 taken 0 (fallthrough)
+branch  1 taken 3
+        -:   38:		{
+    #####:   39:			printf("Invalid name.Name should contain only alphabets\n");
+call    0 never executed
+    #####:   40:			continue;
+        -:   41:		}
+        3:   42:		len=strlen(name);
+        3:   43:		if(len<5||len>15)
+branch  0 taken 3 (fallthrough)
+branch  1 taken 0
+branch  2 taken 0 (fallthrough)
+branch  3 taken 3
+        -:   44:		{
+    #####:   45:			printf("Invalid Length.Length should not exceed 15 charecters\n");
+call    0 never executed
+    #####:   46:			continue;
+        -:   47:		}
+        -:   48:		else
+        -:   49:		{
+        -:   50:			break;
+        -:   51:		}
+        -:   52:	}
+        3:   53:		int an,flag=0;
+        -:   54:		while(1)
+        -:   55:		{
+        3:   56:			printf("\n Enter aadhar no:\n");
+call    0 returned 3
+        3:   57:			scanf("%d",&an);
+call    0 returned 3
+        3:   58:			if(an<100000|| an>999999)
+branch  0 taken 3 (fallthrough)
+branch  1 taken 0
+branch  2 taken 0 (fallthrough)
+branch  3 taken 3
+        -:   59:			{
+    #####:   60:				printf("Invalid Length.Length should only of 6 digits.\n"); 
+call    0 never executed
+    #####:   61:				continue;
+        -:   62:			}
+        -:   63:
+        -:   64:
+        -:   65:/*			for(ptr=start;(ptr);ptr=ptr->next)
+        -:   66:			{
+        -:   67:				if(ptr->aadhar_no==an)
+        -:   68:				{
+        -:   69:					flag=1;
+        -:   70:					break;
+        -:   71:				}
+        -:   72:			}
+        -:   73:			if(flag==1)
+        -:   74:			{
+        -:   75:				printf("already exist");
+        -:   76:				continue;
+        -:   77:			}*/
+        -:   78:			else{
+        -:   79:				break;
+        -:   80:			}
+        -:   81:		}
+        3:   82:			sprintf(aadhar_no,"%d",an);
+        -:   83:
+        3:   84:	printf("Enter your password: \n");
+call    0 returned 3
+        3:   85:        char *pr=getpassword();
+call    0 returned 3
+        -:   86:
+        -:   87:	while(1)
+        -:   88:	{
+        3:   89:		printf("\nEnter your account type:\n");
+call    0 returned 3
+        3:   90:	        scanf("%s",account_type);
+call    0 returned 3
+       3*:   91:		if((strcmp(account_type,"SA")==0) ||(strcmp(account_type,"CA")==0)) 
+branch  0 taken 0 (fallthrough)
+branch  1 taken 3
+branch  2 never executed
+branch  3 never executed
+        -:   92:		{
+        3:   93:			printf("valid Account type\n");
+call    0 returned 3
+        3:   94:			break;
+        -:   95:		}
+        -:   96:		else{
+    #####:   97:		     continue;
+        -:   98:		}
+        -:   99:	}
+        -:  100:
+        -:  101:	while(1)
+        -:  102:	{
+        3:  103:        	printf("\nEnter your amount:\n");
+call    0 returned 3
+        3:  104:	        scanf("%lf",&amount);	
+call    0 returned 3
+       3*:  105:			if((strcmp(account_type,"SA")==0 && amount <5000) || (strcmp(account_type,"CA")==0 && amount < 10000))
+branch  0 taken 3 (fallthrough)
+branch  1 taken 0
+branch  2 taken 3 (fallthrough)
+branch  3 taken 0
+branch  4 taken 0 (fallthrough)
+branch  5 taken 3
+branch  6 never executed
+branch  7 never executed
+        -:  106:			{
+    #####:  107:				printf("Minimum amount should be less than 5000 SA and less than 10000 for CA");
+call    0 never executed
+    #####:  108:				continue;
+        -:  109:			}
+        -:  110:			else
+        -:  111:			{
+        -:  112:				break;
+        -:  113:			}
+        -:  114:	}
+        -:  115:
+        3:  116:       	strcpy(customer_id,account_type);
+        3:  117:        strcat(customer_id,aadhar_no);
+        -:  118:
+        3:  119:	strcpy(new->name,name);
+        3:  120:	strcpy(new->customer_id,customer_id);
+        3:  121:	new->aadhar_no=atoi(aadhar_no);
+        3:  122:	strcpy(new->password,pr);
+        3:  123:	strcpy(new->account_type,account_type);
+        3:  124:	new->balance=amount;
+        -:  125:
+        3:  126:	printf("Created Account\n");
+call    0 returned 3
+        3:  127:        printf("%s",customer_id); 
+call    0 returned 3
+        3:  128:	if(!start)
+branch  0 taken 1 (fallthrough)
+branch  1 taken 2
+        -:  129:	{
+        1:  130:		start=new;
+        1:  131:		new->next=NULL;
+        -:  132:	}
+        2:  133:	else if(strcmp(new->customer_id, start->customer_id)<0)
+branch  0 taken 0 (fallthrough)
+branch  1 taken 2
+        -:  134:	{
+    #####:  135:		new->next=start;
+    #####:  136:		start=new;
+        -:  137:	}
+        -:  138:	else
+        -:  139:	{
+        5:  140:		for(ptr=start;(ptr) &&(strcmp( ptr->customer_id, new->customer_id)<0);prev= ptr ,ptr=ptr->next);
+branch  0 taken 3 (fallthrough)
+branch  1 taken 2
+branch  2 taken 3
+branch  3 taken 0 (fallthrough)
+        2:  141:		prev->next=new;
+        2:  142:		new->next=ptr;
+        -:  143:	}
+        3:  144:	printf("\n");
+call    0 returned 3
+        3:  145:}
+        -:  146:
+        -:  147:
+function View_Balance called 0 returned 0% blocks executed 0%
+    #####:  148:int View_Balance()
+        -:  149:{
+    #####:  150:	if(!start)
+branch  0 never executed
+branch  1 never executed
+        -:  151:	{
+    #####:  152:		printf("\nEmpty List\n");
+call    0 never executed
+    #####:  153:		return(1);
+        -:  154:	}
+        -:  155:	char m_customer_id[20];
+    #####:  156:	printf("\nEnter Customer id\n");
+call    0 never executed
+    #####:  157:	scanf("%s",m_customer_id);
+call    0 never executed
+    #####:  158:	for(ptr=start;(ptr)&& (strcmp(ptr->customer_id,m_customer_id)!=0);ptr=ptr->next);
+branch  0 never executed
+branch  1 never executed
+branch  2 never executed
+branch  3 never executed
+        -:  159:
+    #####:  160:	if(!ptr)
+branch  0 never executed
+branch  1 never executed
+        -:  161:	{
+    #####:  162:		printf("%s Customer id not found\n",m_customer_id);
+call    0 never executed
+    #####:  163:		return(1);
+        -:  164:	}
+    #####:  165:	printf("Balance is %7.2lf\n",ptr->balance);
+call    0 never executed
+        -:  166:	
+    #####:  167:}
+        -:  168:
+function customer_file_to_list called 1 returned 100% blocks executed 62%
+        1:  169: int customer_file_to_list()
+        -:  170:{
+        -:  171:	cust *last;
+        -:  172:	FILE *fp;
+        1:  173:	if((fp=fopen("Customer_File","rb")) == NULL)
+call    0 returned 1
+branch  1 taken 0 (fallthrough)
+branch  2 taken 1
+        -:  174:	{
+    #####:  175:		return (1);
+        -:  176:	}
+        1:  177:	new = (cust *)calloc(1,sizeof(cust));
+        1:  178:	fread(new,sizeof(cust),1,fp);
+call    0 returned 1
+        1:  179:	while(!feof(fp))
+call    0 returned 1
+branch  1 taken 0
+branch  2 taken 1 (fallthrough)
+        -:  180:	{
+    #####:  181:		if(!start)
+branch  0 never executed
+branch  1 never executed
+        -:  182:		{
+    #####:  183:			start=last=new;
+    #####:  184:			new->next=NULL;
+        -:  185:		}
+        -:  186:		else
+        -:  187:		{
+    #####:  188:			last->next=new;
+    #####:  189:			last=new;
+    #####:  190:			new->next=NULL;
+        -:  191:		}
+    #####:  192:		new= (cust *) calloc(1,sizeof(cust));
+    #####:  193:		fread(new,sizeof(cust),1,fp);
+call    0 never executed
+        -:  194:	}
+        1:  195:}
+        -:  196:
+        -:  197:
+        -:  198:
+function customer_list_to_file called 1 returned 100% blocks executed 100%
+        1:  199:int customer_list_to_file()
+        -:  200:{
+        -:  201:	FILE *fp;
+        1:  202:	fp=fopen("Customer_File","wb");
+call    0 returned 1
+        4:  203:	for(ptr=start; (ptr);ptr=ptr->next)
+branch  0 taken 3
+branch  1 taken 1 (fallthrough)
+        -:  204:	{
+        3:  205:		fwrite(ptr,sizeof(cust),1,fp);
+call    0 returned 3
+        -:  206:	}
+        1:  207:	fclose(fp);
+call    0 returned 1
+        1:  208:}
+        -:  209:
+        -:  210:
+function Get_Customer_Report called 1 returned 100% blocks executed 82%
+        1:  211:int Get_Customer_Report()
+        -:  212:{
+        1:  213:	if(!start)
+branch  0 taken 0 (fallthrough)
+branch  1 taken 1
+        -:  214:	{
+    #####:  215:		printf("Empty List\n");
+call    0 never executed
+    #####:  216:		return(1);
+        -:  217:	}
+        1:  218:	printf("\n--Customer Report--\n");
+call    0 returned 1
+        1:  219:	printf("\n CUSTOMER_ID    AADHAR_NO    NAME    PASSWORD    ACCOUNT_TYPE     BALANCE\n\n");  
+call    0 returned 1
+        4:  220:	for(ptr=start;(ptr);ptr=ptr->next)
+branch  0 taken 3
+branch  1 taken 1 (fallthrough)
+        -:  221:	{
+        3:  222:		printf("\n %s     %d      %s      %s      %7.21f \n",ptr->customer_id,ptr->aadhar_no,ptr->name,ptr->password,ptr->account_type,ptr->balance);
+call    0 returned 3
+        -:  223:	}
+        -:  224:	
+        -:  225:  
+        1:  226:}
+        -:  227:
+        -:  228:
+function Edit_Customer called 1 returned 100% blocks executed 66%
+        1:  229:int Edit_Customer()
+        -:  230:{
+        -:  231:	char  m_customer_id[20];
+        -:  232:	char  m_account_type[10];
+        -:  233:	char m_aadhar_no[10];
+        -:  234:
+        1:  235:	printf("Enter the customer id\n");
+call    0 returned 1
+        1:  236:	scanf("%s",m_customer_id);
+call    0 returned 1
+        2:  237:	for(ptr=start; (ptr) &&(strcmp(ptr->customer_id,m_customer_id)!=0);ptr=ptr->next);
+branch  0 taken 2 (fallthrough)
+branch  1 taken 0
+branch  2 taken 1
+branch  3 taken 1 (fallthrough)
+        -:  238:
+        -:  239:
+        1:  240:	if(!ptr)
+branch  0 taken 0 (fallthrough)
+branch  1 taken 1
+        -:  241:	{
+    #####:  242:		printf("%d Customer id not found\n",m_customer_id);
+call    0 never executed
+    #####:  243:		return(1);
+        -:  244:	}
+        1:  245:	printf("The old customer name , account type and balance of customer id %s is %s , %s and %7.21f\n",ptr->customer_id,ptr->name,ptr->account_type,ptr->balance);
+call    0 returned 1
+        -:  246:
+        -:  247:	while(1)
+        -:  248:	
+    #####:  249:	{
+        1:  250:		sprintf(m_aadhar_no,"%d",ptr->aadhar_no);
+        1:  251:		printf("Enter the new customer name:\n");
+call    0 returned 1
+        1:  252:		scanf("%s",ptr->name);
+call    0 returned 1
+        1:  253:		int len=strlen(ptr->name);
+        1:  254:		if(len<5 || len >15)
+branch  0 taken 1 (fallthrough)
+branch  1 taken 0
+branch  2 taken 0 (fallthrough)
+branch  3 taken 1
+        -:  255:		{
+    #####:  256:			printf("Invalid length.It should be between 5 and 15");
+call    0 never executed
+        -:  257:
+    #####:  258:			continue;
+        -:  259:		}
+        -:  260:		else
+        -:  261:		{
+        -:  262:			break;
+        -:  263:		}
+        -:  264:	}
+        -:  265:
+        1:  266:	int flag=0;
+       1*:  267:	for(int i=0;ptr->name[i]!='\0';i++)
+branch  0 taken 1
+branch  1 taken 0 (fallthrough)
+        -:  268:	{
+        1:  269:		if(!isalpha(ptr->name[i]))
+branch  0 taken 0 (fallthrough)
+branch  1 taken 1
+        -:  270:		{
+    #####:  271:			flag=1;
+    #####:  272:			break;
+        -:  273:		}
+        1:  274:		if(flag==1)
+branch  0 taken 0 (fallthrough)
+branch  1 taken 1
+        -:  275:		{
+    #####:  276:			printf("Invalid name . It should only contain characters\n");
+call    0 never executed
+    #####:  277:			continue;
+        -:  278:		}
+        -:  279:		else
+        -:  280:		{
+        1:  281:			break;
+        -:  282:		}
+        -:  283:	}
+        -:  284:	while(1)
+        -:  285:	{	
+        1:  286:		printf("Enter the new account type\n");
+call    0 returned 1
+        1:  287:		scanf("%s",&m_account_type);
+call    0 returned 1
+        1:  288:		if((strcmp(m_account_type,"SA")==0) || (strcmp(m_account_type,"CA")==0))
+branch  0 taken 1 (fallthrough)
+branch  1 taken 0
+branch  2 taken 1 (fallthrough)
+branch  3 taken 0
+        -:  289:		{
+        1:  290:			printf("Valid account type\n");
+call    0 returned 1
+        1:  291:			if(strcmp(m_account_type,"CA")==0)
+branch  0 taken 1 (fallthrough)
+branch  1 taken 0
+        -:  292:			{
+        1:  293:				if(ptr->balance<10000)
+branch  0 taken 0 (fallthrough)
+branch  1 taken 1
+        -:  294:				{
+    #####:  295:					printf("Minimum account balance of CA should be more than Rs10000\n");
+call    0 never executed
+    #####:  296:					continue;
+        -:  297:				}
+        -:  298:				else
+        -:  299:				{
+        1:  300:					strcpy(ptr->account_type,m_account_type);
+        1:  301:				        strcpy(ptr->customer_id,m_account_type);
+        1:  302:					strcat(ptr->customer_id,m_aadhar_no);
+        1:  303:					printf("New account type : %s",ptr->customer_id);
+call    0 returned 1
+        -:  304:
+        1:  305:					break;
+        -:  306:				}
+        -:  307:			}
+    #####:  308:			else if(strcmp(m_account_type,"SA")==0)
+branch  0 never executed
+branch  1 never executed
+        -:  309:			{
+        -:  310:
+    #####:  311:				strcpy(ptr->account_type,m_account_type);
+    #####:  312:				strcpy(ptr->customer_id,m_account_type);
+    #####:  313:				strcat(ptr->customer_id,m_aadhar_no);
+    #####:  314:				printf("New account type : %s",ptr->customer_id);
+call    0 never executed
+    #####:  315:				break;
+        -:  316:			}
+        -:  317:
+        -:  318:
+        -:  319:
+        -:  320:		}
+        -:  321:		else;
+        -:  322:		{
+    #####:  323:			printf("Invalid account type\n");
+call    0 never executed
+    #####:  324:			continue;
+        -:  325:		}
+        -:  326:       }
+        1:  327:}
+        -:  328:
+function Delete_Customer called 0 returned 0% blocks executed 0%
+    #####:  329:int Delete_Customer()
+        -:  330:{
+    #####:  331:	if(!start)
+branch  0 never executed
+branch  1 never executed
+        -:  332:	{
+    #####:  333:		printf("\nEmpty Records\n");
+call    0 never executed
+    #####:  334:		return(1);
+        -:  335:	}
+        -:  336:	char  m_customer_id[20];
+    #####:  337:	printf("Enter the Customer id\n");
+call    0 never executed
+    #####:  338:	scanf("%s",m_customer_id);
+call    0 never executed
+    #####:  339:	if(strcmp(m_customer_id,start->customer_id)==0)
+branch  0 never executed
+branch  1 never executed
+        -:  340:	{
+    #####:  341:		ptr=start;
+    #####:  342:		start=ptr->next;
+    #####:  343:		free(ptr);
+        -:  344:	}
+        -:  345:	else
+        -:  346:	{
+    #####:  347:		for(ptr=start;(ptr) &&(strcmp (ptr->customer_id,m_customer_id)!=0);prev=ptr,ptr=ptr->next);
+branch  0 never executed
+branch  1 never executed
+branch  2 never executed
+branch  3 never executed
+    #####:  348:		if(!ptr)
+branch  0 never executed
+branch  1 never executed
+        -:  349:		{
+    #####:  350:			printf("%s Customer id not found\n",m_customer_id);
+call    0 never executed
+    #####:  351:			return(1);
+        -:  352:		}
+    #####:  353:		printf("The record of customer id %s deleted succesfully\n\n",ptr->customer_id);
+call    0 never executed
+    #####:  354:		prev->next=ptr->next;
+    #####:  355:		free(ptr);
+        -:  356:	}
+    #####:  357:}
+        -:  358:
+        -:  359:
+function banker_file_to_list called 1 returned 100% blocks executed 85%
+        1:  360:int banker_file_to_list()
+        -:  361:{
+        -:  362:	tr *last;
+        -:  363:	FILE *fp;
+        1:  364:	if((fp=fopen("Transaction_File","rb"))==NULL)
+call    0 returned 1
+branch  1 taken 0 (fallthrough)
+branch  2 taken 1
+        -:  365:	{
+    #####:  366:		return 1;
+        -:  367:	}
+        1:  368:	new1=(tr *)calloc(1,sizeof(tr));
+        1:  369:	fread(new1,sizeof(tr),1,fp);
+call    0 returned 1
+        2:  370:	while(!feof(fp))
+call    0 returned 2
+branch  1 taken 1
+branch  2 taken 1 (fallthrough)
+        -:  371:	{
+        1:  372:		if(!start1)
+branch  0 taken 1 (fallthrough)
+branch  1 taken 0
+        -:  373:		{
+        1:  374:			start1=last=new1;
+        1:  375:			new1->next=NULL;
+        -:  376:		}
+        -:  377:		else
+        -:  378:		{
+    #####:  379:			last->next=new1;
+    #####:  380:			last=new1;
+    #####:  381:			new1->next=NULL;
+        -:  382:		}
+        1:  383:		new1=(tr *)calloc(1,sizeof(tr));
+        1:  384:		fread(new,sizeof(tr),1,fp);
+call    0 returned 1
+        -:  385:	}
+        1:  386:}
+        -:  387:
+        -:  388:
+function banker_list_to_file called 0 returned 0% blocks executed 0%
+    #####:  389:int banker_list_to_file()
+        -:  390:{
+        -:  391:	FILE *fp;
+    #####:  392:	fp=fopen("Transaction_File","wb");
+call    0 never executed
+    #####:  393:	for(ptr1=start1;(ptr1);ptr1=ptr1->next)
+branch  0 never executed
+branch  1 never executed
+        -:  394:	{
+    #####:  395:		fwrite(ptr1,sizeof(tr),1,fp);
+call    0 never executed
+        -:  396:	}
+    #####:  397:	fclose(fp);
+call    0 never executed
+    #####:  398:}
+        -:  399:
+function Get_Transaction_Report called 1 returned 100% blocks executed 36%
+        1:  400:int Get_Transaction_Report()
+        -:  401:{
+        -:  402:
+        1:  403:	if(!start1)
+branch  0 taken 1 (fallthrough)
+branch  1 taken 0
+        -:  404:	{
+        1:  405:		printf("Empty List\n");
+call    0 returned 1
+        1:  406:		return(1);
+        -:  407:	}
+    #####:  408:	printf("\n--Transaction Report--\n");
+call    0 never executed
+    #####:  409:	printf("\n SOURCE   DESTINATION    AMOUNT\n\n");
+call    0 never executed
+    #####:  410:	for(ptr1=start1;(ptr1);ptr1=ptr1->next)
+branch  0 never executed
+branch  1 never executed
+        -:  411:	{
+        -:  412: 
+    #####:  413:		printf("\n %s      %s       %7.21f \n",ptr1->saccount,ptr1->daccount,ptr1->amt);
+call    0 never executed
+        -:  414:	}
+        -:  415:	
+    #####:  416:}
+        -:  417:
+        -:  418:
+        -:  419:
